@@ -1,0 +1,5 @@
+server/
+tools/
+*.log
+node_modules/
+.env

@@ -1,12 +1,21 @@
 {
   "version": 2,
   "name": "line-dashboard-frontend",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "vite",
   "cleanUrls": true,
   "routes": [
+    {
+      "handle": "filesystem"
+    },
     {
       "src": "/assets/(.*)",
       "dest": "/assets/$1"
