@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "line-dashboard-frontend",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "cleanUrls": true
+}
