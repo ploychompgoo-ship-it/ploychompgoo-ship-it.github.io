@@ -5,5 +5,15 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "vite",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
