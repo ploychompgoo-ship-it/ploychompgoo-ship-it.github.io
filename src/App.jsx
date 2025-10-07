@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Toaster } from '@/components/ui/toaster';
-import Header from '@/components/Header';
-import StatsCards from '@/components/StatsCards';
-import ContentGrid from '@/components/ContentGrid';
+import { Toaster } from './components/ui/toaster';
+import Header from './components/Header';
+import StatsCards from './components/StatsCards';
+import ContentGrid from './components/ContentGrid';
 import { useStore } from './store.js';
 import aiService from './services/ai-service.js';
 

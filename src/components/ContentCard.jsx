@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, X, Trash2, Image as ImageIcon, MessageSquare, Calendar, User } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from './ui/button';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,7 +13,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+} from './ui/alert-dialog';
 
 const ContentCard = ({ content, onApprove, onReject, onDelete }) => {
   const [imageError, setImageError] = useState(false);

@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import ContentCard from '@/components/ContentCard';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import ContentCard from './ContentCard';
 
 const ContentGrid = ({ contents, onApprove, onReject, onDelete }) => {
   const [activeTab, setActiveTab] = useState('all');
