@@ -5,8 +5,8 @@ import SimpleApp from './SimpleApp.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import './index.css';
 
-// Use SimpleApp for now to debug issues, switch back to App when working
-const AppToRender = SimpleApp;
+// Use App (full dashboard) now that basic functionality is working
+const AppToRender = App;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
