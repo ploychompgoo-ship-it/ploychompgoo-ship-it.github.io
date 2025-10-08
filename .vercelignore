@@ -4,7 +4,6 @@ tools/
 node_modules/
 .env
 # Frontend files - ignore for backend deployment
-package.json
 index.html
 vite.config.js
 vite.config.js.bak
@@ -16,5 +15,3 @@ dist/
 netlify.toml
 # Old server directory
 server/
-# Old api files
-api/index.js
