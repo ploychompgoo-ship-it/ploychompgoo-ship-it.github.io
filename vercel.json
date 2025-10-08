@@ -1,29 +1,9 @@
 {
   "version": 2,
-  "name": "line-dashboard-frontend",
   "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
+    { "src": "server/index.js", "use": "@vercel/node" }
   ],
   "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "functions": {},
-  "rewrites": [],
-  "redirects": []
+    { "src": "/(.*)", "dest": "server/index.js" }
+  ]
 }
