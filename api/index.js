@@ -13,9 +13,9 @@ app.use(cors({
   credentials: true
 }));
 
-// Middleware for parsing JSON
-app.use(express.json());
+// Middleware for parsing JSON (except for webhook endpoint)
 app.use('/webhook', express.raw({ type: 'application/json' }));
+app.use(express.json());
 
 // In-memory store for content items and images
 const contentStore = new Map();
@@ -87,14 +87,34 @@ app.get('/health', (req, res) => {
 // LINE webhook endpoint
 app.post('/webhook', async (req, res) => {
   try {
+    console.log('Webhook received:', {
+      headers: req.headers,
+      bodyType: typeof req.body,
+      bodyLength: req.body?.length
+    });
+
     const channelSecret = process.env.LINE_CHANNEL_SECRET;
     const signature = req.headers['x-line-signature'];
     const body = req.body;
 
-    if (!channelSecret || !signature) {
-      console.warn('LINE channel secret or signature is missing. Skipping validation.');
+    // Always return 200 for LINE verification initially
+    if (!body || body.length === 0) {
+      console.log('Empty body - returning 200 for verification');
+      return res.status(200).json({ success: true });
+    }
+
+    if (!channelSecret) {
+      console.warn('LINE_CHANNEL_SECRET not set - skipping validation');
+    } else if (!signature) {
+      console.warn('No x-line-signature header - skipping validation');
     } else {
       const hash = crypto.createHmac('sha256', channelSecret).update(body).digest('base64');
+      console.log('Signature validation:', {
+        received: signature,
+        calculated: hash,
+        match: hash === signature
+      });
+      
       if (hash !== signature) {
         console.error('Signature validation failed!');
         return res.status(400).json({ error: 'Invalid signature' });
