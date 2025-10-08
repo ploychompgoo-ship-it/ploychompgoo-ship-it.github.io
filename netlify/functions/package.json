@@ -1,0 +1,8 @@
+{
+  "name": "line-dashboard-functions",
+  "version": "1.0.0",
+  "dependencies": {
+    "@google/generative-ai": "^0.19.0",
+    "uuid": "^9.0.1"
+  }
+}
