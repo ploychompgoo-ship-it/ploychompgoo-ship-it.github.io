@@ -16,3 +16,5 @@ dist/
 netlify.toml
 # Old server directory
 server/
+# Old api files
+api/index.js
