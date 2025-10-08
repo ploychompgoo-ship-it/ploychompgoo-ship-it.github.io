@@ -1,5 +1,16 @@
-server/
+
 tools/
 *.log
 node_modules/
 .env
+# Frontend files - ignore for backend deployment
+package.json
+index.html
+vite.config.js
+vite.config.js.bak
+tailwind.config.js
+postcss.config.js
+src/
+public/
+dist/
+netlify.toml
