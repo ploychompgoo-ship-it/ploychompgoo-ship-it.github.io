@@ -241,7 +241,7 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 		},
 	},
-	base: '/line-dashboard/',
+	base: '/',
 	build: {
 		outDir: 'dist',
 		assetsDir: 'assets',
