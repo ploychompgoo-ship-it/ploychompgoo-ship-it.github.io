@@ -79,7 +79,24 @@ exports.handler = async (event, context) => {
           hasLineToken: !!process.env.LINE_CHANNEL_ACCESS_TOKEN,
           hasGeminiKey: !!process.env.GEMINI_API_KEY,
           netlifyFunction: true
-        }
+        },
+        contentCount: contentStore.size
+      })
+    };
+  }
+
+  // Get recent content
+  if (httpMethod === 'GET' && queryStringParameters?.getContent) {
+    const recentContent = Array.from(contentStore.values())
+      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+      .slice(0, 20); // Return last 20 items
+    
+    return {
+      statusCode: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        content: recentContent,
+        timestamp: new Date().toISOString()
       })
     };
   }

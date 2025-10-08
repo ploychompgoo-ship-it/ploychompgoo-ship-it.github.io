@@ -6,19 +6,26 @@ import StatsCards from './components/StatsCards';
 import ContentGrid from './components/ContentGrid';
 import { useStore } from './store.js';
 import aiService from './services/ai-service.js';
+import contentService from './services/content-service.js';
 
 function App() {
   const { contentItems, addContentItem, updateContentStatus, deleteContentItem } = useStore();
 
   useEffect(() => {
-    // Set up Socket.IO listener for new content from LINE
-    aiService.subscribeToContent((newContent) => {
-      console.log('[Dashboard] newContent received:', newContent);
+    // Set up polling listener for new content from LINE
+    contentService.subscribeToContent((newContent) => {
+      console.log('[Dashboard] newContent received via polling:', newContent);
       addContentItem(newContent);
+    });
+
+    // Test backend health on startup
+    aiService.healthCheck().then(isHealthy => {
+      console.log('[Dashboard] Backend health:', isHealthy ? '✅ Healthy' : '❌ Unavailable');
     });
 
     // Cleanup on unmount
     return () => {
+      contentService.cleanup();
       aiService.cleanup();
     };
   }, [addContentItem]);
